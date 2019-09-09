@@ -43,10 +43,56 @@
 						"value": "@activity('Lookup1').output.value",
 						"type": "Expression"
 					},
-					"isSequential": true
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Set Blob Name",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "Set Blob Path",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "BlobPath",
+								"value": {
+									"value": "@{item().Path}",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "Set Variable1",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": []
+						},
+						{
+							"name": "Set Blob Path",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "BlobPath",
+								"value": "@{item().Path}"
+							}
+						}
+					]
 				}
 			}
 		],
+		"variables": {
+			"BlobPath": {
+				"type": "String"
+			},
+			"BlobName": {
+				"type": "String"
+			}
+		},
 		"annotations": []
 	}
 }
