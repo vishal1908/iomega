@@ -72,7 +72,10 @@
 							"userProperties": [],
 							"typeProperties": {
 								"variableName": "BlobPath",
-								"value": ""
+								"value": {
+									"value": "@{item().Path}\n",
+									"type": "Expression"
+								}
 							}
 						},
 						{
